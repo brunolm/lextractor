@@ -1,4 +1,12 @@
 ;(async function() {
+  const valueOrDefault = (fn, def) => {
+    try {
+      return fn()
+    } catch (err) {
+      return def || ''
+    }
+  }
+
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
   async function openDeferedSections() {
@@ -27,18 +35,20 @@
   const skills = []
 
   const skillElementList = document.querySelectorAll('.pv-skill-category-entity__name-text')
-  for (const skillElement of skillElementList) {
-    const skillName = skillElement.innerText
-    const skillEndorsements = +skillElement.closest('div').lastElementChild.lastElementChild.innerText
+  if (skillElementList) {
+    for (const skillElement of skillElementList) {
+      const skillName = skillElement.innerText
+      const skillEndorsements = +skillElement.closest('div').lastElementChild.lastElementChild.innerText
 
-    skills.push({ name: skillName, endorsements: skillEndorsements })
+      skills.push({ name: skillName, endorsements: skillEndorsements })
+    }
   }
 
   const data = {
-    name: document.title.split('|')[0].replace(/ $/, ''),
-    position: document.querySelector('.pv-top-card h2').innerText,
-    location: document.querySelector('.pv-top-card li.inline-block').innerText,
-    email: document.querySelector('[href^="mailto:"]').innerText,
+    name: valueOrDefault(() => document.title.split('|')[0].replace(/ $/, '')),
+    position: valueOrDefault(() => document.querySelector('.pv-top-card h2').innerText),
+    location: valueOrDefault(() => document.querySelector('.pv-top-card li.inline-block').innerText),
+    email: valueOrDefault(() => document.querySelector('[href^="mailto:"]').innerText),
     link,
     skills,
   }
