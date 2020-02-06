@@ -47,7 +47,7 @@
   const data = {
     name: valueOrDefault(() => document.title.split('|')[0].replace(/ $/, '')),
     position: valueOrDefault(() => document.querySelector('.pv-top-card h2').innerText),
-    location: valueOrDefault(() => document.querySelector('.pv-top-card li.inline-block').innerText),
+    location: valueOrDefault(() => document.querySelector('.pv-top-card--list:nth-child(3) li.t-normal').innerText),
     email: valueOrDefault(() => document.querySelector('[href^="mailto:"]').innerText),
     link,
     skills,
