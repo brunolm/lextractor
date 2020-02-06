@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "Lextractor",
+  "version": "1.0",
+  "description": "Gets data.",
+  "icons": {
+    "16": "assets/16.png",
+    "32": "assets/32.png",
+    "48": "assets/48.png",
+    "128": "assets/128.png"
+  },
+  "permissions": ["webRequest", "tabs", "https://api.trello.com/", "https://www.linkedin.com/"],
+  "browser_action": {
+    "default_icon": "assets/16.png",
+    "default_popup": "src/popup.html"
+  },
+  "options_page": "src/settings.html",
+  "web_accessible_resources": ["src/settings.html"],
+  "content_security_policy": "script-src 'self' https://api.trello.com/ https://code.jquery.com/; object-src 'self'"
+}
