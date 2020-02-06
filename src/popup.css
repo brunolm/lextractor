@@ -1,10 +1,14 @@
 body {
   width: 150px;
-  height: 60px;
+  height: 100px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   flex-direction: column;
+}
+
+a {
+  padding: 16px 0;
 }

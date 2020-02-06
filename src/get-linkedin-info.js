@@ -7,9 +7,9 @@
     for (const el of deferredElements) {
       el.scrollIntoView()
 
-      await wait(100)
+      await wait(200)
     }
-    await wait(1000)
+    await wait(2000)
     window.scrollTo(0, 0)
   }
 
@@ -22,7 +22,7 @@
 
   const contactInfoLink = document.querySelector('[data-control-name="contact_see_more"]')
   contactInfoLink.click()
-  await wait(100)
+  await wait(1000)
 
   const skills = []
 

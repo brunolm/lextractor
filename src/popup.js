@@ -44,15 +44,25 @@ function add() {
   )
 }
 
-async function addCard(data) {
-  console.log('data', data)
+async function addCard(userData) {
+  console.log('userData', userData)
 
   return new Promise((resolve, reject) => {
     Trello.post(
       '/cards',
       {
-        name: `[LinkedIn] ${data.name}`,
-        desc: JSON.stringify(data),
+        name: `[LinkedIn] ${userData.name}`,
+        desc: `**Name**: ${userData.name}
+**Email**: ${userData.email}
+**LinkedIn**: ${userData.link}
+
+**Location**: ${userData.location}
+
+**Position**: ${userData.position}
+
+**Skills**:
+- ${userData.skills.map(({ name, endorsements }) => `${name} - ${endorsements}`).join('\n- ')}
+`,
         pos: 'top',
         idList: localStorage.getItem('list'),
       },
