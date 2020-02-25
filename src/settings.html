@@ -7,19 +7,33 @@
       crossorigin="anonymous"
     ></script>
     <script src="settings.js"></script>
+    <link rel="stylesheet" href="settings.css" />
   </head>
   <body>
-    <input type="password" id="key" name="key" />
+    <div class="form-field">
+      <div>Trello key (<a href="https://trello.com/app-key" target="_blank">Get a key here</a>)</div>
+      <div>
+        <input type="password" id="key" name="key" />
+      </div>
+    </div>
 
-    <button id="load">Load</button>
+    <div class="form-field show-has-key">
+      <div>Select a board</div>
+      <div>
+        <select name="board" id="board">
+          <option value="">Select a board</option>
+        </select>
+      </div>
+    </div>
 
-    <select name="board" id="board">
-      <option value="">Select a board</option>
-    </select>
-
-    <select name="list" id="list">
-      <option value="">Select a list</option>
-    </select>
+    <div class="form-field show-has-key">
+      <div>Select a list</div>
+      <div>
+        <select name="list" id="list">
+          <option value="">Select a list</option>
+        </select>
+      </div>
+    </div>
 
     <button id="save">Save</button>
   </body>

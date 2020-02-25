@@ -4,6 +4,19 @@ const gsv = (id, val) => (g(id).value = val)
 
 function load() {
   const key = localStorage.getItem('key')
+
+  if (!key) {
+    document.querySelectorAll('.show-has-key').forEach((element) => {
+      element.style.display = 'none'
+    })
+
+    return
+  }
+
+  document.querySelectorAll('.show-has-key').forEach((element) => {
+    element.style.display = 'block'
+  })
+
   const script = document.createElement('script')
 
   script.src = `https://api.trello.com/1/client.js?key=${key}`
@@ -18,9 +31,17 @@ function save() {
   const board = gv('board')
   const list = gv('list')
 
+  const prevSavedKey = localStorage.getItem('key')
+
   localStorage.setItem('key', key)
   localStorage.setItem('board', board)
   localStorage.setItem('list', list)
+
+  if (prevSavedKey !== key) {
+    load()
+
+    return
+  }
 }
 
 async function onTrelloClientLoad() {
@@ -91,7 +112,6 @@ function getLists(id) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  g('load').addEventListener('click', load)
   g('save').addEventListener('click', save)
 
   g('board').addEventListener('change', async () => {
